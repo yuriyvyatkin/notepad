@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chaos Organizer</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAABfX2Edg4OFjHt7fZR3d3qSd3d6knd3epJ3d3qSd3d6knd3epOEhIeUb29wTVJSVABYWFoAWFhaAFhYWgBYWFoAeHh6gLi4uv+3t7n/t7e5/7e3uf+3t7n/t7e5/7e3uf+2trj/vLy//5GRk9dUVFUAXV1fAF5eYABeXmAAXl5gAHh4e6/Y2Nn///////////////////////////////////////T09f+WlpjvX19fAGNjZABmZmcAZmZnAGZmZwBwcHKg3Nzd//j4+P/p6en87e3t+fLy8v/h4uP9//70/f/////4+Pn/kZGV41xcXQBiYmMAZGRlAGRkZQBkZGUAc3N2oOHh4v+6urr7k5OT9La2tvG+vr78lJGN+IKbyPGXy//2/////5eVl+RbW1wAYmJjAGNjZABlZWYAamprAHFxdKDZ2dv/8vLy+PDw8Pjy8vL78fHx9/38+fjDzev0Omet9Kmnn/+npaffUlJTAFFRUgBgX2EAZWVmAFpaWwBxcXSg29vc//Dw8Pni4uL25eXl9+Xl5ffl5eb48/Do987CsPM1NDb+h4eI7Y+PkACTkZMAfX58AE9RTQAYGBcAcnJ0oNzc3f/p6en22NjY8t3d3fTd3d303d3d9Nra2vPx8fHzr7Cw+j48PP+ppaTD29rbAJmalgBESEIAHBwbAHFxdKDc3N3/6+vr99nZ2fPd3d303d3d9N3d3fTc3Nz04eHh9f////9qamz0T05O/6uqq8eHiIQAS09KABwcGwBxcXSg29vc//Ly8vnj4+P35ubm9+bm5vfm5ub35eXl9+vr7Pf09PX/oqKlvDMyM3N7e3n2naCZpT9BPTYiIyIAcnJ0oN3d3v/h4eH0yMjI8M/Pz/HPz8/xz8/P8czMzPHU1NTx8fHx/5uanuNRUVIAbnFqUd3h2/+Ji4b/AQAAG3FxdKDb29z/8fHx+uXl5fjo6Oj56Ojo+ejo6Pnn5+f46+vr+fPz9P+VlZjlXl5fAEFDQABUVlG1rKyo/25tat5wcHOg4ODh/9/f3/PExMTuzMzM8MzMzPDMzMzwycnJ79HR0fD09PT/mJib5WxsbQAWFhcAAAAAAD89Omhwb21ienp9tNzc3v/6+vn98fHx/PT08/309PP99PTz/fLy8vz29vX89PT1/5mZnPZra2wAU1RVAAQEBAAZGBQALy0qAHR0dW6srK//sbGz/7Oztf+zs7T/s7O0/7OztP+zs7X/sbGz/7Kytf+JiYzBUlJUAGlqbAAsKywAGRcUADw7OABcXF0NdXV2e21tcIhqam2EampthGpqbYRqam2EampthGtrbYV1dXeGZ2doNVFRVABnaGoANjU2ABcUEgA8OzgAgD8AAAAfAAAAHwAAAB8AAAAfAAAAHwAAAB8AAAAPAAAABwAAABMAAAAZAAAAGAAAAB8AAAAfAACAHwAAwD8AAA==" sizes="16x16">
+</head>
+
+<body>
+  <!-- анимация при подключении к серверу -->
+  <img class="status-loading" src="./img/loading.svg" alt="image of the loading process">
+
+  <!-- чат -->
+  <div class="chat-widget">
+    <div class="chat-widget__area">
+      <div class="chat-widget__messages-container drop-zone" data-api-message="">
+        <div class="chat-widget__messages lazy-loading"></div>
+      </div>
+      <form class="chat__form">
+        <input class="chat-widget__input" placeholder="Введите ваше сообщение" autocomplete="off" data-geo-response="">
+        <input class="drop-zone__input" type="file" name="myFile" accept="image/*,video/*,audio/*">
+        <button type="button" class="paperclip">&#128206;</button>
+      </form>
+    </div>
+    <div class="side-nav">
+      <a href="#" class="favorites">Избранное</a>
+      <a href="#" class="text">Текст</a>
+      <a href="#" class="images">Изображения</a>
+      <a href="#" class="audio">Аудио</a>
+      <a href="#" class="video">Видео</a>
+    </div>
+  </div>
+
+  <!-- модальное окно геолокации -->
+  <div class="modal">
+    <div class="modal__container">
+      <h3 class="modal__header"></h3>
+      <p class="modal__message"></p>
+      <form class="modal__form">
+        <label class="modal-form__label" for="coordinates">Широта и долгота через запятую</label>
+        <input class="modal-form__input" type="text" id="coordinates" name="coordinates" placeholder="Например: [51.50851, -0.12572]" maxlength="23">
+        <div class="modal-form__buttons">
+          <button class="modal-form__button-cancel" type="button">Отмена</button>
+          <button class="modal-form__button-enter" type="submit">Ввод</button>
+        </div>
+      </form>
+      <a class="modal__advice" href="https://support.google.com/maps/answer/18539?hl=ru&co=GENIE.Platform%3DDesktop" target="_blank">Как узнать координаты места</a>
+    </div>
+  </div>
+</body>
+</html>
