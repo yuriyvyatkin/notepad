@@ -17,7 +17,7 @@ const loading = document.querySelector('.status-loading');
 
 const hostname = 'chaos-organizer-2021.herokuapp.com';
 
-const api = new API(`https://${hostname}/`, loading, messagesContainer, messages, chatInput);
+const api = new API(`https://${hostname}`, loading, messagesContainer, messages, chatInput);
 
 api.preConnection();
 
