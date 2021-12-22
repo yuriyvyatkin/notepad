@@ -21,7 +21,7 @@ const api = new API(`https://${hostname}`, loading, messagesContainer, messages,
 
 api.preConnection();
 
-const ws = new WebSocket(`ws://${hostname}`);
+const ws = new WebSocket(`wss://${hostname}`);
 
 const chatMessagesMaker = new ChatMessagesMaker(
   chatInput,
