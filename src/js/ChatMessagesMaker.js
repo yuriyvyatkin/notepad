@@ -98,7 +98,7 @@ export default class ChatMessagesMaker {
           ${type !== 'text' ? `<a class="message__download-link" href="${source}" download="${name}">&#11123;</a>` : ''}
           <a class="message__pin" href="#">&#128392;</a>
           <a class="message__star" href="#">&#9733;</a>
-          <span class="message__timestamp">${timestamp}</span>
+          <span class="message__timestamp">${timestamp.replace(' ', ' | ')}</span>
         </div>
       </div>
     `;
@@ -107,7 +107,7 @@ export default class ChatMessagesMaker {
   }
 
   addMessage(coords, content, type) {
-    const timestamp = this.constructor.getTime().replace(' ', ' | ');
+    const timestamp = this.constructor.getTime();
     let objectURL;
 
     if (type !== 'text') {
