@@ -4,12 +4,14 @@ export default class DnD {
     dropZoneInput,
     paperclip,
     geolocation,
+    geoToggler,
     chatMessagesMaker,
   ) {
     this.dropZone = dropZone;
     this.dropZoneInput = dropZoneInput;
     this.paperclip = paperclip;
     this.geolocation = geolocation;
+    this.geoToggler = geoToggler;
     this.chatMessagesMaker = chatMessagesMaker;
   }
 
@@ -27,11 +29,15 @@ export default class DnD {
 
     this.dropZone.classList.remove('drop-zone-overlay');
 
-    this.geolocation.call(
-      (geoResponse) => {
-        this.chatMessagesMaker.addMessage(geoResponse, file, fileType);
-      },
-    );
+    if (this.geoToggler.checked) {
+      this.geolocation.call(
+        (geoResponse) => {
+          this.chatMessagesMaker.addMessage(geoResponse, file, fileType);
+        },
+      );
+    } else {
+      this.chatMessagesMaker.addMessage({ lat: 0, lon: 0 }, file, fileType);
+    }
   }
 
   handleDropZoneInput() {

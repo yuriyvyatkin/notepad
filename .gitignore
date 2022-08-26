@@ -87,3 +87,8 @@ typings/
 
 # VSCode
 .vscode/
+
+# CSS comb
+.csscomb.json
+
+

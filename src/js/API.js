@@ -158,8 +158,6 @@ export default class API {
     setTimeout(() => {
       this.messagesContainer.dataset.apiMessage = '';
       this.messagesContainer.classList.remove('api-says', 'error');
-
-      this.chatInput.focus();
     }, 3000);
   }
 }

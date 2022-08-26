@@ -20,9 +20,10 @@
         <div class="chat-widget__messages lazy-loading"></div>
       </div>
       <form class="chat__form">
-        <input class="chat-widget__input" placeholder="Введите ваше сообщение" autocomplete="off" data-geo-response="">
+        <textarea class="chat-widget__input" cols="30" placeholder="Введите ваше сообщение" autocomplete="off" data-geo-response=""></textarea>
+        <input class="geolocation-toggler" type="checkbox" name="geo">
         <input class="drop-zone__input" type="file" name="myFile" accept="image/*,video/*,audio/*">
-        <button type="button" class="paperclip">&#128206;</button>
+        <button class="paperclip" type="button">&#128206;</button>
       </form>
     </div>
     <div class="side-nav">

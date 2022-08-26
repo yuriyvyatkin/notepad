@@ -72,12 +72,14 @@ const geolocation = new Geolocation(
 
 const dropZone = messagesContainer;
 const paperclip = document.querySelector('.paperclip');
+const geoToggler = document.querySelector('.geolocation-toggler');
 
 const dragAndDrop = new DnD(
   dropZone,
   dropZoneInput,
   paperclip,
   geolocation,
+  geoToggler,
   chatMessagesMaker,
 );
 
@@ -89,6 +91,7 @@ chatInput.addEventListener('keyup', (event) => enterHandler(
   chatInput,
   chatMessagesMaker,
   geolocation,
+  geoToggler,
 ));
 
 const chatForm = document.querySelector('.chat__form');
