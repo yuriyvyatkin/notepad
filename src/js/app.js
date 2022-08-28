@@ -7,6 +7,7 @@ import WebSocketAPI from './WebSocketAPI';
 import DnD from './DnD';
 import MessagesControls from './MessagesControls';
 import SideNavigator from './SideNavigator';
+import scrollDown from './scrollDown';
 
 const chat = document.querySelector('.chat-widget');
 const messagesContainer = chat.querySelector('.chat-widget__messages-container');
@@ -105,43 +106,56 @@ const messagesControls = new MessagesControls(
 
 messagesControls.assignHandler();
 
-function lazyLoadingCallback(response, scrolling) {
+function lazyLoadingCallback(response) {
   response.json().then(
     (data) => {
       let html = '';
+
       data.body.forEach((message) => {
         html += chatMessagesMaker.getMessageHTML(message);
       });
+
       messages.insertAdjacentHTML('afterbegin', html);
+
       const pinnedMessage = messages.querySelector('[data-state="pinned"]');
+
       if (pinnedMessage) {
         const pin = pinnedMessage.querySelector('.message__pin');
         pin.click();
       }
+
       if (data.rest <= 0) {
         messages.classList.remove('lazy-loading');
       }
+
       messagesContainer.style.overflowY = 'auto';
-      if (scrolling) {
-        messagesContainer.scrollTo(0, messagesContainer.scrollHeight);
-        chatInput.focus();
-      }
+
+      chatInput.focus();
     },
   );
 }
 
-api.getMessages(0, (response) => lazyLoadingCallback(response, true));
+api.getMessages(0, (response) => lazyLoadingCallback(response));
+
+messagesContainer.dataset.oldScroll = messagesContainer.scrollTop;
 
 messagesContainer.addEventListener('scroll', (event) => {
   const { currentTarget } = event;
 
-  if (messages.classList.contains('lazy-loading')) {
+  const oldScroll = parseFloat(currentTarget.dataset.oldScroll);
+
+  if (
+    messages.classList.contains('lazy-loading')
+    && oldScroll > currentTarget.scrollTop
+  ) {
     const quarterScrolling = (currentTarget.scrollHeight - currentTarget.clientHeight) / 4;
 
     if (currentTarget.scrollTop < quarterScrolling) {
-      api.getMessages(messages.children.length, (response) => lazyLoadingCallback(response, false));
+      api.getMessages(messages.childElementCount, (response) => lazyLoadingCallback(response));
     }
   }
+
+  currentTarget.dataset.oldScroll = currentTarget.scrollTop;
 });
 
 const sideNav = chat.querySelector('.side-nav');
@@ -150,6 +164,4 @@ const sideNavigator = new SideNavigator(sideNavControls, messages, messagesConta
 
 sideNavigator.handleClick();
 
-setTimeout(() => {
-  messagesContainer.scrollTo(0, messagesContainer.scrollHeight);
-}, 300);
+scrollDown(messagesContainer, messages);

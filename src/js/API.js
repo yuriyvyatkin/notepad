@@ -34,7 +34,9 @@ export default class API {
 
   getMessages(amountChildren, callback) {
     this.activateAPI();
-    if (this.messages.children.length > 0) {
+    this.showWarning();
+
+    if (this.messages.childElementCount > 0) {
       this.messagesContainer.style.overflowY = 'clip';
     }
 
@@ -147,7 +149,7 @@ export default class API {
   }
 
   outputError(errorMessage) {
-    if (this.messages.children.length > 0) {
+    if (this.messages.childElementCount > 0) {
       this.messagesContainer.style.overflowY = 'auto';
     }
 
