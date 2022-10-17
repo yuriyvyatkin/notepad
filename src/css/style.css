@@ -165,7 +165,7 @@ audio {
   border-radius: 7.5px;
 }
 
-.message:not(:last-child) {
+.message {
   margin-bottom: 15px;
 }
 
@@ -267,6 +267,7 @@ audio {
 .chat-widget__input {
   height: 62px;
   min-height: 31px;
+  min-height: 50px;
   padding-left: 70px;
 
   font: inherit;
@@ -311,6 +312,8 @@ audio {
   width: 25px;
   height: 25px;
 
+  border-radius: 5px;
+
   cursor: pointer;
 
   -moz-appearance: initial;
@@ -321,7 +324,7 @@ audio {
   top: -20px;
   left: 0;
 
-  color: #32cd32;
+  color: #000000;
   zoom: 0.7;
 
   content: 'GEO';

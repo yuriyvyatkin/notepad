@@ -1,6 +1,6 @@
 export default function scrollDown(messagesContainer, messages) {
   const scrollID = setInterval(() => {
-    messagesContainer.scrollBy(0, 15);
+    messagesContainer.scrollBy(0, 75);
 
     const oldScroll = parseFloat(messagesContainer.dataset.oldScroll);
 
