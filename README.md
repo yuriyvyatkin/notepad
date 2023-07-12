@@ -1,4 +1,4 @@
-# Ежедневник
+# Записная книжка
 
 [![Build status](https://ci.appveyor.com/api/projects/status/8x8rwy0qb4f4hss0?svg=true)](https://ci.appveyor.com/project/yuriyvyatkin/ahj-diploma-project-frontend)
 
